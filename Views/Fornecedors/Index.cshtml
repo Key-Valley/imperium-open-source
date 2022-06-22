@@ -1,0 +1,86 @@
+@model IEnumerable<Fatec_Facilities.Models.Fornecedor>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="container">
+    <br />
+    <div class="d-flex">
+        <div class="flex-fill">
+            <h1><i class="fas fa-people-carry"></i> Terceiros: </h1>
+        </div>
+        <div class="flex-fill align-items-center justify-content-center">
+            <a class="float-right btn btn-primary text-white" asp-action="Create"><i class="fas fa-plus"></i> &nbsp; Cadastrar um novo terceiro</a>
+        </div>
+    </div>
+    <br />
+    <table class="table table-bordered table-striped table-light overflow-auto" style="height:10vh !important">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CNPJ)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Endereco)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contato)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Prestador)
+                </th>
+                <th>
+                    Categorias
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CNPJ)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Endereco)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contato)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Prestador)
+                    </td>
+                    <td>
+                        
+                        @for(int i = 0; i < ViewBag.FornecedoresCategoria.Count; i++)
+                        {
+                            for(int j = 0; j < ViewBag.FornecedoresCategoria[i].Count; j++)
+                            {
+                                if(ViewBag.FornecedoresCategoria[i][0].Equals((item.Id).ToString()))
+                                {
+                                    if(j!=0)
+                                    {
+                                        <span>@ViewBag.FornecedoresCategoria[i][j]</span>
+                                    }
+                                }
+                            }
+                        }
+                    </td>
+                    <td class="float-right">
+                        <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-pen"></i></a>
+                        <a class="btn btn-outline-info" style="width:40px" asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-info"></i></a>
+                        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

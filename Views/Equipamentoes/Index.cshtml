@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Fatec_Facilities.Models.Equipamento>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+
+}
+
+<div class="container">
+    <br />
+    <div class="d-flex">
+        <div class="flex-fill">
+            <h1><i class="fas fa-cubes"></i> Equipamentos: </h1>
+        </div>
+        <div class="flex-fill align-items-center justify-content-center">
+            <a class="float-right btn btn-primary text-white" asp-action="Create">
+                <i class="fas fa-plus"></i> &nbsp;
+                Cadastrar um novo equipamento
+            </a>
+        </div>
+    </div>
+    <br />
+    <table class="table table-bordered table-striped table-light overflow-auto" style="height:10vh !important">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Registro)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descricao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ativo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Categoria)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Bloco)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Local)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Registro)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ativo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Categoria.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Bloco.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Local.Nome)
+                    </td>
+                    <td class="float-right">
+                        @{
+                            if (item.Ativo)
+                            {
+                                <a class="btn btn-secondary" asp-controller="Equipamentoes" asp-action="ChangeStatus"
+                                   asp-route-id="@item.Id">Inativar</a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-secondary" asp-controller="Equipamentoes" asp-action="ChangeStatus"
+                                   asp-route-id="@item.Id">Ativar</a>
+                            }
+                        }
+                        <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">
+                            <i class="fas fa-pen"></i>
+                        </a>
+                        <a class="btn btn-outline-info" style="width:40px" asp-action="Details" asp-route-id="@item.Id">
+                            <i class="fas fa-info"></i>
+                        </a>
+                        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

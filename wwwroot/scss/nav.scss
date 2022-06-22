@@ -1,0 +1,41 @@
+#asideBar {
+    display: block;
+    position: fixed;
+    z-index: 1200;
+    background-color: #f4f4f4;
+
+    ul {
+        list-style: none;
+
+        button {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin: 0.5em 0.5em
+        }
+
+        li {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding: 1em 3em !important;
+            // width: 200px;
+            background-color: transparent;
+            // transition: 0.35s ease-in-out;
+            span {
+                padding: 1em 3em !important;
+            }
+        }
+
+        li:hover {
+            background-color: #0e2f52;
+        }
+
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    #asideBar {
+        overflow-y: scroll;
+    }
+}

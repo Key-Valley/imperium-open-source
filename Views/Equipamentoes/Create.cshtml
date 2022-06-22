@@ -1,0 +1,96 @@
+﻿@model Fatec_Facilities.Models.Equipamento
+
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="container bg-light text-dark p-5 rounded my-5 h-50 w-50">
+    <h1 class="text-center">Criar um novo Equipamento</h1>
+    <hr class="w-25" />
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Registro" class="control-label"></label>
+                    <input asp-for="Registro" class="form-control" />
+                    <span asp-validation-for="Registro" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Descricao" class="control-label"></label>
+                    <input asp-for="Descricao" class="form-control" />
+                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CategoriaId" class="control-label"></label>
+                    <select asp-for="CategoriaId" class="form-control" asp-items="ViewBag.CategoriaId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BlocoId" class="control-label"></label>
+                    <select id="elBlocos" asp-for="BlocoId" class="form-control" asp-items="ViewBag.BlocoId">
+                        <option disabled selected>-- Selecione o bloco --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LocalId" class="control-label disabled"></label>
+                    <select id="elLocais" asp-for="LocalId" class="form-control" asp-items="ViewBag.LocalId"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Criar" class="btn btn-block btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-12 mx-auto">
+        <a asp-action="Index"> <i class="fas fa-arrow-left"></i> Voltar para os blocos </a>
+    </div>
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script>
+
+        const blocoEl = document.querySelector('#elBlocos');
+        const elLocais = document.querySelector('#elLocais');
+
+
+        function renderOptions(local) {
+            console.log(local);
+            let elOption = document.createElement('option');
+            elOption.value = local.id;
+            elOption.appendChild(document.createTextNode(local.nome));
+            elLocais.appendChild(elOption);
+        }
+
+        blocoEl.addEventListener('change', () => {
+            elLocais.innerHTML = '';
+            // Enviar parametro do Bloco aqui e chamar metodo lá do controller
+            // e esperar o await da resposta retornado na select box local
+            // alert('hello');
+            let valor = blocoEl.value;
+            console.log(valor);
+            axios.get('LoadLocal/' + valor)
+                .then(response => {
+                    let locais = response.data;
+                    console.log(locais);
+                    locais.forEach(local => renderOptions(local))
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        });
+
+    </script>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+

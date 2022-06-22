@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Fatec_Facilities.Models.Local>
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<style>
+
+    .mapa {
+        margin: 2px 2px;
+        color: #fff;
+        background-color: darkslateblue;
+        font-size: 1.3rem;
+        font-weight: 600;
+        height: 250px;
+        width: 250px;
+    }
+
+    a:hover {
+        text-decoration: none !important;
+    }
+</style>
+
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        @foreach (var item in Model)
+        {
+            <a asp-controller="Equipamentoes" asp-action="Equipamentos" asp-route-id="@item.Id">
+                <div class="mapa d-flex flex-column" data-component="@item.Nome">
+                    <div class="p-2 d-flex"> <span class="qtdEquipament text-white align-self-end"><i class="fas fa-cubes"></i>&nbsp;0</span> </div>
+                    <div class="p-2 d-flex flex-fill align-items-center justify-content-center"> @Html.DisplayFor(modelItem => item.Nome) </div>
+                </div>
+            </a>
+            <input id="escondido" type="hidden" value="@item.BlocoID" />
+        }
+    </div>
+    
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script>
+    const elQtdEquipament = document.querySelectorAll('.qtdEquipament');
+    const escondido = document.querySelector('#escondido').value;
+    function renderQtd(qtd) {
+        qtd.forEach(item => {
+            let i = qtd.indexOf(item);
+            elQtdEquipament[i].innerHTML = `<i class="fas fa-cubes"></i>&nbsp;${item.qtd}`;
+        });
+    }
+
+    axios.get('/Locals/LoadEquipaments/' + escondido)
+        .then(response => {
+            console.log(response.data);
+            let qtd = response.data;
+            renderQtd(qtd)
+        })
+        .catch(error => {
+            console.log(error);
+        })
+</script>

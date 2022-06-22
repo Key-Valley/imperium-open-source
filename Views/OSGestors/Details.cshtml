@@ -1,0 +1,77 @@
+@model Fatec_Facilities.Models.OSGestor
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+    <div class="container bg-light text-dark p-5 rounded my-5 h-50 w-50">
+        <h1 class="text-center">Detalhes da ordem de serviço:</h1>
+        <hr class="w-25" />
+        <div class="col-md-12 mx-auto">
+            <dl id="content" class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DataSolicitacao)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DataSolicitacao)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DataAprovacao)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DataAprovacao)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DataConclusao)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DataConclusao)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Equipamento)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Equipamento.Descricao)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Problematica)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Problematica.Descricao)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Status.Id)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Fornecedor)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Fornecedor.CNPJ)
+                </dd>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Valor)
+                </dd>
+            </dl>
+         </div>
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+                <a asp-action="Index">BacktoList</a> |
+                <a class="btn btn-primary text-light" id="elGenerateReport"> Gerar Relatorio</a>
+            </div>
+        </div>
+
+        <script src=" https://printjs-4de6.kxcdn.com/print.min.js"></script>
+        <script>
+            let elGenerateReport = document.querySelector('#elGenerateReport');
+            elGenerateReport.onclick = () => {
+                printJS({
+                    printable: 'content',
+                    type: 'html',
+                    targetStyles: ['*']
+                })
+            }
+        </script>

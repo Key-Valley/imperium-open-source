@@ -1,0 +1,106 @@
+@model IEnumerable<Fatec_Facilities.Models.OSGestor>
+
+@{
+    ViewData["Title"] = "Index";
+    var proinfo = ViewData["QtdOSStatus"] as int[];
+    var proinfolabel = ViewData["QtdOSStatusLabel"] as string[];
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="container">
+    <br />
+    <div class="d-flex">
+        <div class="flex-fill">
+            <h1> <i class="fas fa-tools"></i> Ordens de serviço: </h1>
+        </div>
+    </div>
+    <br />
+    <div class="d-flex justify-content-between">
+        @for (int i = 0; i < proinfo.Length; i++)
+        {
+            <div class="px-5 py-3 bg-secondary text-center">
+                <h2> @proinfo[i] </h2>
+                <span> @proinfolabel[i] </span>
+            </div>
+        }
+    </div>
+    <br />
+    <h4> <i class="fas fa-history"></i> Histórico </h4>
+    <table class="table table-bordered table-striped table-light overflow-auto" style="height:10vh !important">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    <!--@Html.DisplayNameFor(model => model.DataSolicitacao)-->
+                    Data Solicitação
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataAprovacao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataConclusao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Equipamento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Problematica)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fornecedor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Valor)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataSolicitacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataAprovacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataConclusao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Equipamento.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Problematica.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fornecedor.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor)
+                </td>
+                <td class="float-right">
+                    <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">
+                        <i class="fas fa-pen"></i>
+                    </a>
+                    <a class="btn btn-outline-info" style="width:40px" asp-action="Details" asp-route-id="@item.Id">
+                        <i class="fas fa-info"></i>
+                    </a>
+                    <a class="btn btn-outline-info" style="width:40px" asp-action="ChangeStatusOs" asp-route-id="@item.Id">
+                        <i class="fas fa-check"></i>
+                    </a>
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

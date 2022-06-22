@@ -1,0 +1,24 @@
+﻿@model ResetarSenha
+
+<h2>Resetar Senha</h2>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input asp-for="Token" type="hidden" />
+            <input asp-for="Email" type="hidden" />
+            <div class="form-group">
+                <label asp-for="Senha"></label>
+                <input asp-for="Senha" class="form-control" />
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmarSenha"></label>
+                <input asp-for="ConfirmarSenha" class="form-control" />
+                <span asp-validation-for="ConfirmarSenha" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Resetar senha</button>
+        </form>
+    </div>
+</div>

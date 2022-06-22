@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Fatec_Facilities.Models.Bloco>
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+   <style>
+       .mapa {
+           font-size: 1.3rem;
+           font-weight: 600;
+           height: 300px;
+           width: 300px;
+           color: #fff;
+       }
+
+       .qtdEquipament {
+         
+       }
+
+       a:hover {
+           text-decoration: none !important;
+       }
+
+       [data-component='Bloco A'] {
+           background-image: url('../imgs/mapa/blocoa.jpg');
+           background-size: cover;
+       }
+
+       [data-component='Bloco B'] {
+           background-image: url('../imgs/mapa/blocob.png');
+           background-size: cover;
+       }
+
+       [data-component='Bloco C'] {
+           background-image: url('../imgs/mapa/blococ.png');
+           background-size: cover;
+       }
+
+       [data-component='Estacionamento'] {
+           background-image: url('../imgs/mapa/estacionamneto.png');
+           background-size: cover;
+       }
+
+       [data-component='Guarita'] {
+           background-image: url('../imgs/mapa/guarita.png');
+           background-size: cover;
+       }
+
+       [data-component='Almoxarifado'] {
+           background-image: url('../imgs/mapa/almoxarifado.png');
+           background-size: cover;
+       }
+
+       [data-component='Estacionamento dos professores'] {
+           background-image: url('../imgs/mapa/dscn0198.png');
+           background-size: cover;
+       }
+
+
+       [data-component='Patio'] {
+           background-image: url('../imgs/mapa/37950410_950223808502638_8660619759303262208_o.jpg');
+           background-size: cover;
+       }
+       
+       
+   </style>
+
+   <div class="container-fluid">       
+       <div class="row p-3 justify-content-center">
+           @foreach (var item in Model)
+           {
+               <a asp-controller="Locals" asp-action="Locais" asp-route-id="@item.Id">
+                   <div class="mapa d-flex flex-column" data-component="@item.Nome">
+                       <div class="p-2 d-flex"> <span class="qtdEquipament text-white align-self-end"><i class="fas fa-cubes"></i>&nbsp;0</span> </div>
+                       <div class="p-2 d-flex flex-fill align-items-center justify-content-center"> @Html.DisplayFor(modelItem => item.Nome) </div>
+                   </div>
+                   
+               </a>
+           }
+       </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script>
+        const elQtdEquipament = document.querySelectorAll('.qtdEquipament');
+        function renderQtd(qtd) {
+            qtd.forEach(item => {
+                let i = qtd.indexOf(item);
+                elQtdEquipament[i].innerHTML = `<i class="fas fa-cubes"></i>&nbsp;${item.qtd}`;
+            });
+        }
+
+        axios.get('/Blocoes/LoadEquipaments')
+            .then(response => {
+                console.log(response.data);
+                let qtd = response.data;
+                renderQtd(qtd)
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    </script>

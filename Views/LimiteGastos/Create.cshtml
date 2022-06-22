@@ -1,0 +1,49 @@
+@model Fatec_Facilities.Models.LimiteGastos
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Limite Gastos</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Limite" class="control-label"></label>
+                <input asp-for="Limite" class="form-control" />
+                <span asp-validation-for="Limite" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" id="containerSelects">
+                <div>
+                    <label for="elProblems" class="control-label d-block">Anos:</label>
+                    <select name="Ano">
+                        @foreach (var item in ViewBag.Ano)
+                        {
+                            <div class="form-check form-check-inline">
+                                <option name="Ano" value="@item">@item</option>
+                                <label class="form-check-label" for="inlineCheckbox1">@item</label>
+                            </div>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

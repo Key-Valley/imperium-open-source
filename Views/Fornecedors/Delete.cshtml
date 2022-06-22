@@ -1,0 +1,69 @@
+@model Fatec_Facilities.Models.Fornecedor
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    var idFornecedor = Model.Id;
+}
+
+<div class="container bg-light text-dark p-5 rounded my-5 h-50 w-50">
+    <h3 class="text-center">Tem certeza que deseja excluir ?</h3>
+    <hr class="w-25" />
+    <div class="col-md-12 mx-auto">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CNPJ)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CNPJ)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Endereco)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Endereco)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Contato)
+            </dt>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Prestador)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Prestador)
+            </dd>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Contato)
+            </dd>
+            <dt class="col-sm-2">
+                Categorias
+            </dt>
+            <dd class="col-sm-10">
+                @for (int i = 0; i < ViewBag.FornecedoresCategoria.Count; i++)
+                {
+                    if (ViewBag.FornecedoresCategoria[0].Equals((idFornecedor).ToString()))
+                    {
+                        if (i != 0)
+                        {
+                            <span>@ViewBag.FornecedoresCategoria[i]</span>
+                        }
+                    }
+
+                 }
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Excluir" class="btn btn-block btn-danger" />
+            <br />
+            <a asp-action="Index"> <i class="fas fa-arrow-left"></i> Voltar para os blocos </a>
+        </form>
+    </div>
+</div>

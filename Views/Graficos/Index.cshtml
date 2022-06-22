@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+@* <iframe class="container-fluid vh-100"
+    src="https://app.powerbi.com/reportEmbed?reportId=743a39f3-5cc1-4776-b1c7-f40895943ad5&autoAuth=true&ctid=cf72e2bd-7a2b-4783-bdeb-39d57b07f76f&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXNvdXRoLWNlbnRyYWwtdXMtcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQvIn0%3D"
+    frameborder="0" allowFullScreen="true">
+    </iframe> *@
+
+<script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+<script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.widgets.js"></script>   
+<script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+<script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.candy.js"></script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-12">@Html.Raw(ViewData["Chart_2"])</div>
+        <div class="col-md-6 col-12">@Html.Raw(ViewData["Chart_3"])</div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6 col-12">@Html.Raw(ViewData["Chart_4"])</div>
+        <div class="col-md-6 col-12">@Html.Raw(ViewData["Chart_5"])</div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6 col-12">@Html.Raw(ViewData["Chart_6"])</div>
+    </div>
+</div>
+

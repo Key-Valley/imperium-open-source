@@ -1,0 +1,41 @@
+@model Fatec_Facilities.Models.ContaMensal
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_LayoutUser";
+}
+
+<div class="container bg-light text-dark p-5 rounded my-5 h-50 w-50">
+    <h1 class="text-center">Detalhes da conta mensal:</h1>
+    <hr class="w-25" />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CategoriaContaMensal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CategoriaContaMensal.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataVencimento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataVencimento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataPagamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataPagamento)
+        </dd>
+    </dl>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+        <a asp-action="Index">Voltar para a lista</a>
+    </div>
+</div>

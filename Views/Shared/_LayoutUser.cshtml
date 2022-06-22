@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/dist/bundle.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+</head>
+
+<body class="bg-light-blue">
+    <header>
+        <nav class="navbar fixed-top navbar-dark bg-primary">
+            <div class="container">
+                <button class="navbar-toggler ml-3" data-toggle="collapse" data-target="#asideBar"
+                    aria-controls="asideBar" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <a class="navbar-brand" asp-area="" asp-controller="Blocoes" asp-action="Mapa">
+                    <img src="~/imgs/min-logo.png" width="50" height="50" />
+                </a>
+            </div>
+        </nav>
+        <aside class="collapse width float-left h-100 bg-dark text-white shadow-lg" id="asideBar">
+            <ul class="navbar-nav flex-grow-1">
+                <button class="btn btn-primary" data-toggle="collapse" data-target=".collapse.show.width">
+                    <i class="fas fa-times"></i>
+                    Fechar
+                </button>
+                <li class="nav-item">
+                    <a class="nav-link text-white" asp-area="" asp-controller="Blocoes" asp-action="Mapa">
+                        <i class="fas fa-home"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" asp-area="" asp-controller="Graficos" asp-action="Index">
+                        <i class="fas fa-chart-pie"></i>
+                        Dashboard
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
+                        <i class="fas fa-users"></i>
+                        Gestão de Colaboradores
+                    </span>
+                    <div class="dropdown-menu px-4" aria-labelledby="dropdownMenuButton">
+                        <a class="nav-link text-light-blue" asp-area="" asp-controller="Usuario" asp-action="Index">
+                            <i class="fas fa-users"></i>
+                            Gestores
+                        </a>
+                        <a class="nav-link text-light-blue" asp-area="" asp-controller="Fornecedors" asp-action="Index">
+                            <i class="fas fa-people-carry"></i>
+                            Terceiros
+                        </a>               
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
+                        <i class="fas fa-building"></i>
+                        Estrutura
+                    </span>
+                    <div class="dropdown-menu px-4" aria-labelledby="dropdownMenuButton">
+                        <a class="nav-link py-3 text-light-blue" asp-area="" asp-controller="Blocoes" asp-action="Index">
+                            <i class="fas fa-map-signs"></i>
+                            Blocos
+                        </a>
+                        <a class="nav-link py-3 text-light-blue" asp-area="" asp-controller="Locals" asp-action="Index">
+                            <i class="fas fa-map-pin"></i>
+                            Locais
+                        </a>                    
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
+                        <i class="fas fa-paint-roller"></i>
+                        Manutenção Predial
+                    </span>
+                    <div class="dropdown-menu px-4" aria-labelledby="dropdownMenuButton">
+                        <a class="nav-link py-3 text-light-blue" asp-area="" asp-controller="CategoriaManutencaoPredial" asp-action="Index">
+                            <i class="fas fa-list"></i>
+                            Categorias de Manutenção Predial
+                        </a>
+                        <a class="nav-link py-3 text-light-blue" asp-area="" asp-controller="ManutencaoPredial" asp-action="Index">
+                            <i class="fas fa-tools"></i>
+                            OS de Manutenção Predial
+                        </a>                    
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
+                        <i class="fas fa-cubes"></i>
+                        Equipamentos
+                    </span>
+                    <div class="dropdown-menu px-4" aria-labelledby="dropdownMenuButton">
+                        <a class="nav-link py-3 text-light-blue" asp-area="" asp-controller="Categorias" asp-action="Index">
+                                <i class="fas fa-list"></i>
+                                Categorias
+                        </a>
+                        <a class="nav-link py-3 text-light-blue" asp-area="" asp-controller="Equipamentoes" asp-action="Index">
+                            <i class="fas fa-cubes"></i>
+                            Equipamentos
+                        </a>                    
+                        <a class="nav-link py-3 text-light-blue" asp-area="" asp-controller="OSGestors" asp-action="Index">
+                            <i class="fas fa-tools"></i>
+                            O.S.
+                        </a>
+                        <a class="nav-link py-3 text-light-blue" asp-area="" asp-controller="Problematicas" asp-action="Index">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Problematicas
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        Contas Mensais
+                    </span>
+                    <div class="dropdown-menu px-4" aria-labelledby="dropdownMenuButton">
+                        <a class="nav-link text-light-blue" asp-area="" asp-controller="CategoriaContaMensal" asp-action="Index">
+                            <i class="fas fa-list"></i>
+                            Categoria Conta Mensal
+                        </a>
+                        <a class="nav-link text-light-blue" asp-area="" asp-controller="ContaMensal" asp-action="Index">
+                            <i class="fas fa-hand-holding-usd"></i>
+                            Conta Mensal
+                        </a>             
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
+                        <i class="fas fa-receipt"></i>
+                        Financeiro
+                    </span>
+                    <div class="dropdown-menu px-4" aria-labelledby="dropdownMenuButton">
+                         <a class="nav-link text-light-blue" asp-area="" asp-controller="Verbas" asp-action="Index">
+                            <i class="fas fa-money-check"></i>
+                            Verbas
+                        </a>
+                        <a class="nav-link text-light-blue" asp-area="" asp-controller="LimiteGastos" asp-action="Index">
+                            <i class="fas fa-wallet"></i>
+                            Limite Gastos
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" asp-area="" asp-controller="Publico" asp-action="Logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Sair
+                    </a>
+                </li>
+                <ul>
+        </aside> mt-5
+    </header>
+    <div class="container-fluid text-light" style="margin-top: 5em">
+        @RenderBody()
+    </div>
+    <script src="~/dist/bundle.js" asp-append-version="true"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+    <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.widgets.js"></script>   
+    <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+    <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.candy.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>

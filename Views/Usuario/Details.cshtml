@@ -1,0 +1,47 @@
+@model Fatec_Facilities.Models.Usuario
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+    <div class="container bg-light text-dark p-5 rounded my-5 h-50 w-50">
+        <h1 class="text-center">Detalhes usuários:</h1>
+        <hr class="w-25" />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Rm)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Rm)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Gestor)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Gestor)
+            </dd>
+            <dt class="col-sm-2">
+                Nome Fantasia
+            </dt>
+            <dd class="col-sm-10">
+                @ViewBag.Empresa.NomeFantasia
+            </dd>
+        </dl>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Id"><i class="fas fa-pen"></i> Editar</a> |
+            <a asp-action="Index"> <i class="fas fa-arrow-left"></i> Voltar para os blocos </a>
+        </div>
+    </div>

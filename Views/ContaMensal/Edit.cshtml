@@ -1,0 +1,50 @@
+@model Fatec_Facilities.Models.ContaMensal
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_LayoutUser";
+}
+
+<div class="container bg-light text-dark p-5 rounded my-5 h-50 w-50">
+    <h1 class="text-center">Editar uma conta</h1>
+    <hr class="w-25" />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="CategoriaContaMensalId" class="control-label"></label>
+                    <select asp-for="CategoriaContaMensalId" class="form-control" asp-items="ViewBag.CategoriaContaMensalId"></select>
+                    <span asp-validation-for="CategoriaContaMensalId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Valor" class="control-label"></label>
+                    <input asp-for="Valor" class="form-control" />
+                    <span asp-validation-for="Valor" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DataVencimento" class="control-label"></label>
+                    <input asp-for="DataVencimento" class="form-control" />
+                    <span asp-validation-for="DataVencimento" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DataPagamento" class="control-label"></label>
+                    <input asp-for="DataPagamento" class="form-control" />
+                    <span asp-validation-for="DataPagamento" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Voltar para a lista</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

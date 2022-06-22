@@ -1,0 +1,70 @@
+@model IEnumerable<Fatec_Facilities.Models.ContaMensal>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutUser";
+}
+
+<div class="container">
+    <br />
+    <div class="d-flex">
+        <div class="flex-fill">
+            <h1><i class="fas fa-cubes"></i> Contas mensais: </h1>
+        </div>
+        <div class="flex-fill align-items-center justify-content-center">
+            <a class="float-right btn btn-primary text-white" asp-action="Create">
+                <i class="fas fa-plus"></i> &nbsp;
+                Cadastrar uma nova conta
+            </a>
+        </div>
+    </div>
+    <br />
+    <table class="table table-bordered table-striped table-light overflow-auto">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CategoriaContaMensal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Valor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataVencimento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataPagamento)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoriaContaMensal.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataVencimento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataPagamento)
+                </td>
+                <td>
+                    <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">
+                        <i class="fas fa-pen"></i>
+                    </a>
+                    <a class="btn btn-outline-info" style="width:40px" asp-action="Details" asp-route-id="@item.Id">
+                        <i class="fas fa-info"></i>
+                    </a>
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+</div>

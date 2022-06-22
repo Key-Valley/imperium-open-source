@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Fatec_Facilities.Models.Problematica>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="container">
+    <br />
+    <div class="d-flex">
+        <div class="flex-fill">
+            <h1><i class="fas fa-exclamation-triangle"></i> Problematicas: </h1>
+        </div>
+        <div class="flex-fill align-items-center justify-content-center">
+            <a class="float-right btn btn-primary text-white" asp-action="Create"><i class="fas fa-plus"></i> &nbsp; Cadastrar um novo problema</a>
+        </div>
+    </div>
+    <br />
+    <table class="table table-bordered table-striped table-light overflow-auto" style="height:10vh !important">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descricao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Categoria)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria.Nome)
+                </td>
+                <td class="float-right">
+                    <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-pen"></i></a>
+                    <a class="btn btn-outline-info" style="width:40px" asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-info"></i></a>
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

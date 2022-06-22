@@ -1,0 +1,39 @@
+﻿@model Fatec_Facilities.Models.Problematica
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+    <div class="container bg-light text-dark p-5 rounded my-5 h-50 w-50">
+        <h1 class="text-center">Criar um novo problema</h1>
+        <hr class="w-25" />
+        <br />
+        <div class="row">
+            <div class="col-md-12 mx-auto">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Descricao" class="control-label"></label>
+                        <input asp-for="Descricao" class="form-control" />
+                        <span asp-validation-for="Descricao" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CategoriaId" class="control-label"></label>
+                        <select asp-for="CategoriaId" class="form-control" asp-items="ViewBag.CategoriaId"></select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Criar" class="btn btn-block btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col text-center">
+            <a asp-action="Index"> <i class="fas fa-arrow-left"></i> Voltar para os blocos </a>
+        </div>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
